@@ -1,17 +1,17 @@
 import streamlit as st
-import subprocess
-
+from ping3 import ping
+from ping3 import verbose_ping
 
 # Funcție pentru a face ping unui domeniu/IP și a capta întreaga ieșire
 def ping_domeniu(domeniu):
-    # Execută comanda ping și captează ieșirea
-    result = subprocess.run(["ping", "-n", "4", domeniu], capture_output=True, text=True)  # '-c 4' pentru Linux, folosește '-n 4' pe Windows
-
-    # Verifică dacă ping-ul a avut succes
-    if result.returncode == 0:
-        return result.stdout  # Returnează ieșirea completă (stdout)
-    else:
-        return f"Ping-ul către {domeniu} a eșuat.\n{result.stderr}"
+    try:
+        # Folosește verbose_ping pentru a trimite mai multe pachete
+        result = []
+        for reply in verbose_ping(domeniu, count=4):  # Trimite 4 pachete
+            result.append(str(reply))  # Salvează fiecare răspuns
+        return "\n".join(result)
+    except Exception as e:
+        return f"A apărut o eroare la ping: {e}"
 
 # Interfață Streamlit
 st.title("🌐 Verificare Ping")  # Titlu aplicației
