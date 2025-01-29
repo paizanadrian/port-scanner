@@ -34,7 +34,7 @@ def check_port(ip, port_local):
         return s.connect_ex((ip, port_local)) == 0
 
 # Interfață Streamlit
-st.title("🔍 Scaner de Porturi")
+st.title("🔍 Scanner de Porturi")
 
 # Input pentru IP
 ip_address = st.text_input("Introduceți adresa IP:", "")
