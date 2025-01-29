@@ -5,7 +5,7 @@ import subprocess
 # Funcție pentru a face ping unui domeniu/IP și a capta întreaga ieșire
 def ping_domeniu(domeniu):
     # Execută comanda ping și captează ieșirea
-    result = subprocess.run(["ping", "-n", "4", domeniu], capture_output=True, text=True)
+    result = subprocess.run(["ping", "-c", "4", domeniu], capture_output=True, text=True)  # '-c 4' pentru Linux, folosește '-n 4' pe Windows
 
     # Verifică dacă ping-ul a avut succes
     if result.returncode == 0:
