@@ -1,7 +1,7 @@
 import streamlit as st
 
 # Titlu aplicație
-st.title("🔍 Aplicație Scanare și Ping")
+st.title("🔍 Aplicație Scanare Porturi")
 
 st.write("""
     Selectează o pagină din meniul din stânga:
